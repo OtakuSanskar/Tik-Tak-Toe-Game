@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { BUTTON_RESTART_COLOR, BUTTON_CLEAR_SCORE_COLOR } from "../Design";
 import React from "react";
 
 const Actions = () => {

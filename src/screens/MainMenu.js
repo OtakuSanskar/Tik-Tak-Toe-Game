@@ -1,10 +1,26 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Constants from "expo-constants";
+import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
+import * as localization from "expo-localization";
+import { ACTIVE_OPACITY } from "../Design";
+import { Platform } from "react-native";
+import i18n from "../Localization";
 
-const MainMenu = () => {
+const MainMenu = ({setPlay}) => {
+  const [value, setValue] = React.useState("");
+  const [fontsLoaded] = useFonts({ Lobster_400Regular });
+  const playGame = () => { setPlay(true); };
+
+  if (!fontsLoaded) { return null; }
   return (
-    <View>
-      <Text>MainMenu</Text>
+    <View style={styles.mainMenuView}>
+      <Text style={[styles.title, {fontFamily:"Lobster_400Regular"} ]} >
+        {i18n.t("title")}
+      </Text>
+      <TouchableOpacity activeOpacity={ACTIVE_OPACITY} style={styles.button} onPress={playGame}>
+        <Text style={styles.text}>{i18n.t("play")}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
