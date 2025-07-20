@@ -1,16 +1,36 @@
-import { StyleSheet, Text, View } from "react-native";
-import { BUTTON_RESTART_COLOR, BUTTON_CLEAR_SCORE_COLOR } from "../Design";
 import React from "react";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import {
+  BUTTON_RESTART_COLOR,
+  BUTTON_CLEAR_SCORE_COLOR,
+  ACTIVE_OPACITY,
+} from "../Design";
+import * as localization from "../Localization";
 
-const Actions = () => {
+const Actions = ({ isRestart, restart, clearScore }) => {
   return (
-    <View>
-      <Text>Actions</Text>
+    <View style={[styles.view, { display: isRestart ? "flex" : "none" }]}>
+      <View style={styles.viewRow}>
+        <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
+          style={[styles.button, styles.restart]}
+          onPress={restart}
+        >
+          <Text style={styles.text}>{localization.default.t("restart")}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
+          style={[styles.button, styles.clearScore]}
+          onPress={clearScore}
+        >
+          <Text style={styles.text}>
+            {localization.default.t("clearScore")}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
-
-export default Actions;
 
 const styles = StyleSheet.create({
   view: {
@@ -36,3 +56,5 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
+
+export default Actions;

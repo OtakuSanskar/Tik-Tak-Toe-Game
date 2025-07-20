@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Square from "./Square";
 import Actions from "./Actions";
 import { calculateWinner, matchStatus, status } from "../GameLogic";
@@ -28,7 +28,7 @@ const Board = () => {
 
   const winnnerStyle = (i) => {
     if (winnerColor !== null) {
-      return winnnerStyle.find((index) => index==i)
+      return winnerColor.find((index) => index==i)
     }
   };
   const restart = () => {
